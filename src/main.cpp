@@ -6,20 +6,21 @@
 #include <SerialFlash.h>
 //#include <output_i2s.h>
 //#include <input_i2s.h>
+#include <input_tdm.h>
 #include <output_tdm.h>
-//#include <input_tdm.h>
+#include <Audio.h>
 #include <synth_sine.h>
 #include <FreqCount.h>
 
 AK4619VN codec(&Wire, AK4619VN_ADDR);
 
 // GUItool: begin automatically generated code
-// AudioSynthWaveformSine   sine1;          //xy=254,456
-AudioOutputTDM           tdm1;           //xy=448,545
+AudioSynthWaveformSine   sine1;          //xy=254,456
+AudioInputTDM            tdm1;           //xy=451,277
+AudioOutputTDM           tdm2;           //xy=448,545
 // AudioOutputI2S           i2s1; 
-// AudioConnection          patchCord1(sine1, 0, i2s1, 0);
-// AudioInputTDM            tdm2;           //xy=451,277
-// AudioConnection          patchCord1(sine1, 0, tdm1, 0);
+AudioConnection          patchCord1(sine1, 0, tdm2, 0);
+AudioConnection          patchCord2(tdm1, 1, tdm2, 1);
 // GUItool: end automatically generated code
 
 // GUItool: begin automatically generated code
@@ -43,9 +44,9 @@ AudioOutputTDM           tdm1;           //xy=448,545
 void setup() {
   AudioMemory(40);
   Serial.begin(115200);
-  // sine1.amplitude(0.9);
-  // sine1.frequency(220);
-  //delay(2000);
+  sine1.amplitude(0.9);
+  sine1.frequency(220);
+  delay(1000);
 
   // Enable the Audio codec
   pinMode(22, OUTPUT); //PWN on

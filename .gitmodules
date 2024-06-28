@@ -1,0 +1,3 @@
+[submodule "lib/ak4619vn"]
+	path = lib/ak4619vn
+	url = https://github.com/Lytrix/ak4619vn/

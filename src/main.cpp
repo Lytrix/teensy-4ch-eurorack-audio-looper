@@ -45,7 +45,7 @@ AudioConnection          patchCord3(tdm1, 0, tdm2, 0);
 
 
 void setup() {
-  AudioMemory(40);
+  AudioMemory(100);
   //Serial.begin(115200);
   Serial.begin(9600);
   //waveform1.begin(0.95, 207.65, WAVEFORM_TRIANGLE);
@@ -122,8 +122,8 @@ void setup() {
     Serial.println("Unable to set DAC input configuration.");
   }
   //DAC2 to SDOUT2, DAC1 to SDOUT1
-  //error = codec.outputConf(AK4619VN::AK_OUT_SDIN2, AK4619VN::AK_OUT_SDIN1); 
-  error = codec.outputConf(AK4619VN::AK_OUT_SDOUT1, AK4619VN::AK_OUT_SDOUT1); 
+  error = codec.outputConf(AK4619VN::AK_OUT_SDIN2, AK4619VN::AK_OUT_SDIN1); 
+  //error = codec.outputConf(AK4619VN::AK_OUT_SDOUT1, AK4619VN::AK_OUT_SDOUT1); 
   if(error){
     Serial.println("Unable to set DAC input configuration.");
   }

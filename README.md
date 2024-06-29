@@ -5,12 +5,18 @@
 AK4619 codec: https://forum.pjrc.com/index.php?threads/tdm-with-ak4619.75104/
 Teensy TDM recorder to SD: https://github.com/MSWagner/teensy-tools/
 24 bit audio codec board: https://github.com/whollender/SuperAudioBoard
+Settings for clock LR sync stuff:
+https://github.com/MichaelTayler/SuperAudioBoard/blob/main/Teensy_4.0/i2s.h
+
 Arduino Codec: https://github.com/TrimenZ/ak4619vn/tree/main
 Teensy Codec for TDM: https://github.com/janscience/TeeRec/tree/main
 Teensy Audio Library: https://github.com/PaulStoffregen/Audio/
 Save audio to file: https://forum.pjrc.com/index.php?threads/build-a-teensy-based-cdj-can-it-be-done.75232/#post-345104
 
 IMRXT1062 DRIVERS: https://github.com/nxp-mcuxpresso/mcux-sdk
+
+well documenten i2s/clock descriptions
+https://github.com/hughpyle/teensy-i2s/blob/master/i2s.cpp
 
 Led Driver   PCA9635     :i2c address 0x03
 Codec In/Out AK4619vn    :i2c address 0x10

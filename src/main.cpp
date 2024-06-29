@@ -8,7 +8,7 @@
 //#include <input_i2s.h>
 #include <input_tdm.h>
 #include <output_tdm.h>
-#include <Audio.h>
+//#include <Audio.h>
 #include <synth_sine.h>
 #include <FreqCount.h>
 
@@ -16,13 +16,14 @@ AK4619VN codec(&Wire, AK4619VN_ADDR);
 
 // GUItool: begin automatically generated code
 AudioSynthWaveformSine   sine1;          //xy=254,456
+//AudioSynthWaveform       waveform1;
 AudioInputTDM            tdm1;           //xy=451,277
 AudioOutputTDM           tdm2;           //xy=448,545
 // AudioOutputI2S           i2s1; 
-AudioConnection          patchCord1(sine1, 0, tdm2, 0);
-AudioConnection          patchCord2(tdm1, 1, tdm2, 1);
-AudioConnection          patchCord3(tdm1, 2, tdm2, 2);
-AudioConnection          patchCord4(tdm1, 3, tdm2, 3);
+//AudioConnection          patchCord1(waveform1, 0, tdm2, 0);
+//AudioConnection          patchCord2(sine1, 0, tdm2, 0);
+AudioConnection          patchCord3(tdm1, 0, tdm2, 0);
+//AudioConnection          patchCord4(tdm1, 3, tdm2, 3);
 // GUItool: end automatically generated code
 
 // GUItool: begin automatically generated code
@@ -47,6 +48,7 @@ void setup() {
   AudioMemory(40);
   //Serial.begin(115200);
   Serial.begin(9600);
+  //waveform1.begin(0.95, 207.65, WAVEFORM_TRIANGLE);
   sine1.amplitude(0.9);
   sine1.frequency(100);
   delay(1000);
@@ -83,6 +85,8 @@ void setup() {
   //error = codec.audioFormatMode(AK4619VN::AK_I2S_STEREO, false, false);
   //error = codec.audioFormatMode(AK4619VN::AK_TDM256_I2S_32B, false, false);
   error = codec.audioFormatMode(AK4619VN::AK_TDM128_I2S_32B, true, false);
+  //error = codec.audioFormatMode(AK4619VN::AK_TDM128_MSB_32B, true, false);
+  
   if(error){
     Serial.println("Unable to set audio format mode.");
   }  
@@ -118,9 +122,8 @@ void setup() {
     Serial.println("Unable to set DAC input configuration.");
   }
   //DAC2 to SDOUT2, DAC1 to SDOUT1
-  error = codec.outputConf(AK4619VN::AK_OUT_SDIN1, AK4619VN::AK_OUT_SDIN1); 
-  //DAC2 to SDOUT1, DAC1 to SDOUT1
-  //error = codec.outputConf(AK4619VN::AK_OUT_SDIN1, AK4619VN::AK_OUT_SDIN1); 
+  //error = codec.outputConf(AK4619VN::AK_OUT_SDIN2, AK4619VN::AK_OUT_SDIN1); 
+  error = codec.outputConf(AK4619VN::AK_OUT_SDOUT1, AK4619VN::AK_OUT_SDOUT1); 
   if(error){
     Serial.println("Unable to set DAC input configuration.");
   }
@@ -145,6 +148,7 @@ void loop() {
     unsigned long count = FreqCount.read();
     Serial.println(count);
   }
+  
 }
 
 // put function definitions here:
